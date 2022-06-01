@@ -1,22 +1,25 @@
-import { useRef } from 'react';
+import React, { MutableRefObject, useRef } from 'react';
 import './App.css';
+import 'boxicons';
+import video from './assets/test.mp4'
 import useVideoPlayer from './hooks/usePlayer';
 
 const App = () => {
-  const videoElement = useRef(null)
+  const videoElement: MutableRefObject<HTMLVideoElement> = useRef(video)
   const {
     playerState,
     togglePlay,
     handleVideoProgress,
     handleOnTimeUpdate,
     handleVideoSpeed,
-    toggleMute
+    toggleMute,
+    toggleFullscreen
   } = useVideoPlayer(videoElement)
 
   return (
     <div className='container'>
       <div className="videoWrapper">
-        <video src="video" ref={videoElement} onTimeUpdate={handleOnTimeUpdate}/>
+        <video src={video} ref={videoElement} onTimeUpdate={handleOnTimeUpdate} autoPlay={true} muted={true}/>
         <div className="controls">
           <div className="actions">
             <button onClick={togglePlay}>
@@ -26,7 +29,7 @@ const App = () => {
           <input type="range" min="0" max="100" value={playerState.progress} onChange={e => handleVideoProgress(e)}/>
           <select className='velocity' value={playerState.speed} onChange={e => handleVideoSpeed(e)}>
             <option value="0.5">0.5x</option>
-            <option value="1" selected={true}>1x</option>
+            <option value="1">1x</option>
             <option value="1.25">1.25x</option>
             <option value="1.5">1.5x</option>
             <option value="2">2x</option>

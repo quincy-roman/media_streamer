@@ -1,6 +1,6 @@
-import { useState, useEffect, ChangeEvent } from "react"
+import { useState, useEffect, ChangeEvent, MutableRefObject } from "react"
 
-const useVideoPlayer = (videoElement: any) => {
+const useVideoPlayer = (videoElement: MutableRefObject<HTMLVideoElement>) => {
     const [playerState, setPlayerState] = useState({
         isPlaying: true,
         progress: 0,
