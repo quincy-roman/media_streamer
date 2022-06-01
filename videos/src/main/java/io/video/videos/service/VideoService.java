@@ -38,6 +38,7 @@ public class VideoService {
     public Video getVideo(String id) throws IllegalStateException, IOException {
         GridFSFile file = template.findOne(new Query(Criteria.where("_id").is(id)));
         
+        log.info("{}, {}", file, id);
         Video video = new Video();
         video.setTitle(file.getMetadata().get("title").toString());
         video.setStream(operations.getResource(file).getInputStream());

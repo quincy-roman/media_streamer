@@ -8,6 +8,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,7 +26,7 @@ public class VideoController {
     private VideoService service;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Resource> getStream(String id) throws IllegalStateException, IOException {
+    public ResponseEntity<Resource> getStream(@PathVariable String id) throws IllegalStateException, IOException {
         return ResponseEntity.ok(new InputStreamResource(service.getVideo(id).getStream()));
     }
 

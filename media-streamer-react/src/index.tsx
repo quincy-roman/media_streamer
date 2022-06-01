@@ -16,7 +16,7 @@ root.render(
     <BrowserRouter>
         <Routes>
           <Route path='/' element={<App/>}/>
-          <Route path='/video/:title' element={<Player/>}/>
+          <Route path='/video/:title/:id' element={<Player/>}/>
           <Route path='/video/upload' element={<Upload/>}/>
           <Route path='/video' element={<Videos/>}/>
         </Routes>

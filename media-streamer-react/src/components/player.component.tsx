@@ -3,14 +3,14 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 const Player = () => {
-    const {title, url} = useParams()
-    console.log(title, url)
+    const {title, id} = useParams()
+    console.log(title, id)
 
     return (
         <div className="player">
             <h1>{title}</h1>
             <video controls>
-                <source src='/assets/test.mp4' type="video/mp4"/>
+                <source src={`http://localhost:8080/video/${id}`} type="video/mp4"/>
             </video>
         </div>
     )
