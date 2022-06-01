@@ -9,7 +9,7 @@ const Player = () => {
     return (
         <div className="player">
             <h1>{title}</h1>
-            <video controls>
+            <video controls preload="auto">
                 <source src={`http://localhost:8080/video/${id}`} type="video/mp4"/>
             </video>
         </div>
