@@ -30,9 +30,9 @@ public class VideoService {
     public String addVideo(String title, MultipartFile file) throws IOException {
         DBObject metaData = new BasicDBObject();
         metaData.put("type", "video");
-        metaData.put("title", title);
+        metaData.put("title", title.substring(0, title.lastIndexOf('.')));
 
-        return template.store(file.getInputStream(), file.getName(), file.getContentType()).toString();
+        return template.store(file.getInputStream(), file.getOriginalFilename(), file.getContentType(), metaData).toString();
     }
 
     public Video getVideo(String id) throws IllegalStateException, IOException {

@@ -1,7 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App';
+import Player from './components/player.component';
+import Upload from './components/upload';
+import Videos from './components/videos';
+import './index.css';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(
@@ -9,7 +13,14 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<App/>}/>
+          <Route path='/video/:title' element={<Player/>}/>
+          <Route path='/video/upload' element={<Upload/>}/>
+          <Route path='/video' element={<Videos/>}/>
+        </Routes>
+      </BrowserRouter>
   </React.StrictMode>
 );
 

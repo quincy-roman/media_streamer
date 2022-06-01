@@ -3,6 +3,7 @@ package io.video.videos.controller;
 import java.io.IOException;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import io.video.videos.service.PhotoService;
 import lombok.AllArgsConstructor;
 
 @RestController
+@CrossOrigin
 @AllArgsConstructor
 @RequestMapping("/photos")
 public class PhotoController {
