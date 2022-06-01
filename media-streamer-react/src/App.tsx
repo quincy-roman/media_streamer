@@ -1,26 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useRef } from 'react';
 import './App.css';
+import useVideoPlayer from './hooks/usePlayer';
 
-function App() {
+const App = () => {
+  const videoElement = useRef(null)
+  const {
+    playerState,
+    togglePlay,
+    handleVideoProgress,
+    handleOnTimeUpdate,
+    handleVideoSpeed,
+    toggleMute
+  } = useVideoPlayer(videoElement)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container'>
+      <div className="videoWrapper">
+        <video src="video" ref={videoElement} onTimeUpdate={handleOnTimeUpdate}/>
+        <div className="controls">
+          <div className="actions">
+            <button onClick={togglePlay}>
+              {!playerState.isPlaying ? (<i className='bx bx-play'></i>) : (<i className='bx bx-pause'></i>)}
+            </button>
+          </div>
+          <input type="range" min="0" max="100" value={playerState.progress} onChange={e => handleVideoProgress(e)}/>
+          <select className='velocity' value={playerState.speed} onChange={e => handleVideoSpeed(e)}>
+            <option value="0.5">0.5x</option>
+            <option value="1" selected={true}>1x</option>
+            <option value="1.25">1.25x</option>
+            <option value="1.5">1.5x</option>
+            <option value="2">2x</option>
+          </select>
+          <button className="mute-btn" onClick={toggleMute}>
+            { playerState.isMuted ? (<i className='bx bxs-volume-full'></i>) : (<i className='bx bxs-volume-mute'></i>) }
+          </button>
+        </div>
+      </div>
     </div>
-  );
+  )
 }
 
 export default App;
