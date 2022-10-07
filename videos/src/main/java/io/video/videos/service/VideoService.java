@@ -47,9 +47,10 @@ public class VideoService {
     }
 
     public List<String> getAllVideoNames() {
+        List<String> videoList = new ArrayList<>();
         Query query = new Query();
         query.fields().include("name");
-        template.find(query).forEach(doc -> log.info("{}", doc));
-        return new ArrayList<>();
+        template.find(query).forEach(video -> videoList.add(video.getFilename()));
+        return videoList;
     }
 }

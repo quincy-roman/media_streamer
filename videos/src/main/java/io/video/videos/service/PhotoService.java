@@ -1,6 +1,7 @@
 package io.video.videos.service;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.bson.BsonBinarySubType;
 import org.bson.types.Binary;
@@ -25,5 +26,9 @@ public class PhotoService {
 
     public Photo getPhoto(String id) {
         return repo.findById(id).get();
+    }
+
+    public List<Photo> getAllPhotos() {
+        return repo.findAll();
     }
 }
