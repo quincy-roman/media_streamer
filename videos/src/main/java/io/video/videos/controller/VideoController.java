@@ -14,13 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import io.video.videos.model.Video.VideoInfo;
 import io.video.videos.service.VideoService;
 import lombok.AllArgsConstructor;
 
 @RestController
 @CrossOrigin
 @AllArgsConstructor
-@RequestMapping("/video")
+@RequestMapping("/videos")
 public class VideoController {
 
     private VideoService service;
@@ -35,8 +36,8 @@ public class VideoController {
         return ResponseEntity.ok(service.addVideo(title, video));
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<List<String>> getAllVideoNames() {
+    @GetMapping
+    public ResponseEntity<List<VideoInfo>> getAllVideoNames() {
         return ResponseEntity.ok(service.getAllVideoNames());
     }
 }

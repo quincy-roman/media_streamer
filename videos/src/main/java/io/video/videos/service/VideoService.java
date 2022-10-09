@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import io.video.videos.model.Video;
+import io.video.videos.model.Video.VideoInfo;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -46,11 +47,11 @@ public class VideoService {
         return video;
     }
 
-    public List<String> getAllVideoNames() {
-        List<String> videoList = new ArrayList<>();
+    public List<VideoInfo> getAllVideoNames() {
+        List<VideoInfo> videoList = new ArrayList<>();
         Query query = new Query();
-        query.fields().include("name");
-        template.find(query).forEach(video -> videoList.add(video.getFilename()));
+        query.fields().include("name", "_id");
+        template.find(query).forEach(video -> videoList.add(new VideoInfo(video.getObjectId().toString(), video.getFilename())));
         return videoList;
     }
 }
