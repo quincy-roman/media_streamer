@@ -1,10 +1,11 @@
 package io.video.videos.service;
 
 import java.io.IOException;
-import java.util.List;
 
 import org.bson.BsonBinarySubType;
 import org.bson.types.Binary;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,7 +29,7 @@ public class PhotoService {
         return repo.findById(id).get();
     }
 
-    public List<Photo> getAllPhotos() {
-        return repo.findAll();
+    public Page<Photo> getAllPhotos(Pageable pageable) {
+        return repo.findAll(pageable);
     }
 }

@@ -2,9 +2,11 @@ package io.video.videos.controller;
 
 import java.io.IOException;
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 
+import org.springdoc.api.annotations.ParameterObject;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,8 +31,8 @@ public class PhotoController {
     private PhotoService service;
 
     @GetMapping
-    public ResponseEntity<List<Photo>> getAllPhotos() {
-        return ResponseEntity.ok(service.getAllPhotos());
+    public ResponseEntity<Page<Photo>> getAllPhotos(@ParameterObject Pageable pageable) {
+        return ResponseEntity.ok(service.getAllPhotos(pageable));
     }
 
     @GetMapping("/{id}")
